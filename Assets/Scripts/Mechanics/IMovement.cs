@@ -57,15 +57,15 @@ public class CharacterMover
     private float _stamina = 100f;
     private float _staminaRegenPerTick = 10f;
 
-    private float _dashRange = 24f;
+    private float _dashRange = 30f;
     private float _dashCooldown = 1f;
     private bool _canDash = true;
-    private bool _isDashing = false;
+    private bool _isDashing;
     private float _dashingTime = 0.2f;
     private float _dashingStaminaCostPerUse = 50f;
 
-    private bool _isSprinting = false;
-    private float _sprintingSpeedBonusPercentage = 2.5f;
+    private bool _isSprinting;
+    private float _sprintingSpeedBonusPercentage = 2.0f;
     private float _sprintingStaminaCostPerTick = 25f;
     private float _sprintingStaminaThresholdValue = 35f;
 
@@ -96,7 +96,7 @@ public class CharacterMover
                 _rb.linearVelocity = _character.transform.forward *
                                      (_movementSpeed * _movementInput.GetMovingDirection().z);
 
-                float deltaYawDegrees = (float)_movementInput.GetRotateDirection() * _rotateSpeed * Time.deltaTime;
+                float deltaYawDegrees = _movementInput.GetRotateDirection() * _rotateSpeed * Time.deltaTime;
                 _character.transform.Rotate(0, deltaYawDegrees, 0);
                 break;
 
