@@ -6,13 +6,12 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public EMovementType movementType;
-    private Rigidbody _rb;
+    [SerializeField] private Rigidbody _rb;
     private CharacterMover _mover;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
         _mover = new CharacterMover(this, movementType, _rb);
     }
 
@@ -23,12 +22,6 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        _mover.UpdateMeter();
-        if (_mover.CanDash())
-        {
-            StartCoroutine(_mover.DashAction());
-        }
-
-        _mover.SprintAction();
+        _mover.Update();
     }
 }

@@ -119,7 +119,19 @@ public class CharacterMover
         }
     }
 
-    public void UpdateMeter()
+    public void Update()
+    {
+        UpdateStamina();
+        
+        SprintAction();
+        
+        if (CanDash())
+        {
+            _character.StartCoroutine(DashAction());
+        }
+    }
+
+    public void UpdateStamina()
     {
         if (_isSprinting)
         {
